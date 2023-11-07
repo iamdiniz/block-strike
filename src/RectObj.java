@@ -6,11 +6,18 @@ public class RectObj extends Rectangle {
 
 	public Color color;
 	
+	public int speed = 0;
+	
 	public RectObj(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		
 		color = new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255));
 		
+		speed = new Random().nextInt(6-4)+4; // Velocidade do retângulo é dinâmica.
+	}
+	
+	public void update() {
+		x+=speed;
 	}
 	
 }

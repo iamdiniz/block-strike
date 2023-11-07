@@ -12,15 +12,19 @@ public class Game extends Canvas implements Runnable {
 	
 	public static final int HEIGHT = 480;
 	
-	public int barraDeVida = 100;
+	public static int barraDeVida = 100;
+	
+	public Spawner spawner;
 	
 	public Game() {
 		Dimension dimension = new Dimension(WIDTH, HEIGHT);
 		this.setPreferredSize(dimension);
+		
+		spawner = new Spawner();
 	}
 	
 	public void update() {
-		barraDeVida--;
+		spawner.update();
 		if (barraDeVida <= 0) {
 			// Aqui seria o Game Over
 			barraDeVida = 100;
@@ -52,6 +56,9 @@ public class Game extends Canvas implements Runnable {
 		graphics.fillRect(Game.WIDTH/2 - 100 - 70, 20, barraDeVida*3, 20);
 		graphics.setColor(Color.white);
 		graphics.drawRect(Game.WIDTH/2 - 100 - 70, 20, 300, 20);
+		
+		spawner.render(graphics);
+		
 		bs.show();
 		
 	}
