@@ -11,6 +11,8 @@ public class Particle extends Rectangle {
 	
 	public int rotation = 0;
 	
+	public int timer = 0;
+	
 	public double xa;
 	
 	public double ya;
@@ -35,6 +37,7 @@ public class Particle extends Rectangle {
 		xa+= dx * speed;
 		ya+= dy * speed;
 		
+		timer++;
 	}
 	
 	public void render(Graphics graphics) {

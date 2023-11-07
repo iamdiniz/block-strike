@@ -10,6 +10,8 @@ public class Spawner {
 	
 	public List<RectObj> rectangles = new ArrayList<RectObj>();
 	
+	public List<Particle> particles = new ArrayList<Particle>();
+	
 	public void update() {
 		timer++;
 		if (timer % 20 == 0) {
@@ -34,13 +36,24 @@ public class Spawner {
 						rectangles.remove(current);
 						Game.score++;
 						Game.clicked = false;
+						
+						for (int n = 0; n < 50; n++) {
+							particles.add(new Particle(current.x, current.y, 8, 8, current.color));
+						}
 					}
 				}
 			}
 			
 		}
 		
-		
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).update();
+			
+			Particle particle = particles.get(i);
+			if (particle.timer >= 60) {
+				particles.remove(particle);
+			}
+		}
 		
 	}
 	
@@ -55,6 +68,9 @@ public class Spawner {
 			g2.fillRect(current.x, current.y, current.width, current.height);
 			g2.rotate(Math.toRadians(-current.rotation), current.x + current.width/2,
 					current.y + current.height/2);
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).render(graphics);
 		}
 		
 	}
