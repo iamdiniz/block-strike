@@ -1,6 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,6 +25,8 @@ public class Game extends Canvas implements Runnable, MouseListener {
 	
 	public static boolean clicked = false;
 	
+	public boolean gameOver = false;
+	
 	public Spawner spawner;
 	
 	public Game() {
@@ -35,10 +38,12 @@ public class Game extends Canvas implements Runnable, MouseListener {
 	}
 	
 	public void update() {
-		spawner.update();
-		if (barraDeVida <= 0) {
-			// Aqui seria o Game Over
-			barraDeVida = 100;
+		if (gameOver == false) {
+			spawner.update();
+			if (barraDeVida <= 0) {
+				barraDeVida = 100;
+				gameOver = true;
+			}
 		}
 	}
 	
@@ -54,21 +59,22 @@ public class Game extends Canvas implements Runnable, MouseListener {
 		graphics.setColor(Color.black);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		
-		/*
-		graphics.setColor(Color.white);
-		graphics.setFont(new Font("Arial", Font.BOLD, 23));
-		
-		graphics.drawString("Pontos: " + contador, WIDTH/2 - 60, 30);
-		
-		*/
-		
-		graphics.setColor(Color.green);
-		graphics.fillRect(Game.WIDTH/2 - 100 - 70, 20, barraDeVida * 3, 20);
-		graphics.setColor(Color.white);
-		graphics.drawRect(Game.WIDTH/2 - 100 - 70, 20, 300, 20);
-		
-		spawner.render(graphics);
+		if (gameOver == false) {
+			graphics.setColor(Color.green);
+			graphics.fillRect(Game.WIDTH/2 - 100 - 70, 20, barraDeVida * 3, 20);
+			graphics.setColor(Color.white);
+			graphics.drawRect(Game.WIDTH/2 - 100 - 70, 20, 300, 20);
+			
+			spawner.render(graphics);
+			
+		} else {
+			graphics.setColor(Color.red);
+			graphics.setFont(new Font("Arial", Font.BOLD, 30));
+			graphics.drawString("Game Over!", WIDTH/2 - 100, HEIGHT/2 - 50);
+			
+			graphics.setColor(Color.blue);
+			graphics.drawString("Score: " + this.score, WIDTH/2 - 80, HEIGHT/2 + 80 - 50);
+		}
 		
 		bs.show();
 		

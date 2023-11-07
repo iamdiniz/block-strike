@@ -15,7 +15,7 @@ public class RectObj extends Rectangle {
 		
 		color = new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255));
 		
-		speed = new Random().nextInt(6-2)+2; // Velocidade do retângulo é dinâmica.
+		speed = new Random().nextInt(8-6) + 6; // Velocidade do retângulo é dinâmica.
 	}
 	
 	public void update() {

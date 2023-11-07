@@ -25,7 +25,7 @@ public class Spawner {
 			
 			if (current.x > Game.WIDTH) {
 				rectangles.remove(current); // remove os retangulo que saiu da tela.
-				Game.barraDeVida--; // Nesse caso, tu perde vida.
+				Game.barraDeVida-=3; // Nesse caso, tu perde vida.
 			}
 			
 			if (Game.clicked) {
