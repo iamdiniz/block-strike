@@ -2,11 +2,13 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, MouseListener {
 
 	public static final int WIDTH = 640;
 	
@@ -14,11 +16,20 @@ public class Game extends Canvas implements Runnable {
 	
 	public static int barraDeVida = 100;
 	
+	public static int score = 0;
+	
+	public static int mx;
+	
+	public static int my;
+	
+	public static boolean clicked = false;
+	
 	public Spawner spawner;
 	
 	public Game() {
 		Dimension dimension = new Dimension(WIDTH, HEIGHT);
 		this.setPreferredSize(dimension);
+		this.addMouseListener(this);
 		
 		spawner = new Spawner();
 	}
@@ -89,6 +100,36 @@ public class Game extends Canvas implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		Game.clicked = true;
+		mx = e.getX();
+		my = e.getY();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

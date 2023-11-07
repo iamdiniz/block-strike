@@ -12,7 +12,7 @@ public class Spawner {
 	
 	public void update() {
 		timer++;
-		if (timer % 60 == 0) {
+		if (timer % 20 == 0) {
 			rectangles.add(new RectObj(0, new Random().nextInt(480-40), 40, 40));
 		}
 		
@@ -25,7 +25,22 @@ public class Spawner {
 				rectangles.remove(current); // remove os retangulo que saiu da tela.
 				Game.barraDeVida--; // Nesse caso, tu perde vida.
 			}
+			
+			if (Game.clicked) {
+				
+				if (Game.mx >= current.x && Game.mx < current.x + current.width) {
+					
+					if (Game.my >= current.y && Game.my < current.y + current.height) {
+						rectangles.remove(current);
+						Game.score++;
+						Game.clicked = false;
+					}
+				}
+			}
+			
 		}
+		
+		
 		
 	}
 	
