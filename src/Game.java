@@ -64,7 +64,7 @@ public class Game extends Canvas implements Runnable, MouseListener {
 		*/
 		
 		graphics.setColor(Color.green);
-		graphics.fillRect(Game.WIDTH/2 - 100 - 70, 20, barraDeVida*3, 20);
+		graphics.fillRect(Game.WIDTH/2 - 100 - 70, 20, barraDeVida * 3, 20);
 		graphics.setColor(Color.white);
 		graphics.drawRect(Game.WIDTH/2 - 100 - 70, 20, 300, 20);
 		
